@@ -19,7 +19,10 @@ const App = () => {
   };
 
   //function to deleteContact
-  const deleteContact = () => {};
+  const deleteContact = (id: number) => {
+    const filteredTasks = todos.filter((todo) => todo.id !== id);
+    setTodos(filteredTasks);
+  };
 
   return (
     <Exp className="container">
@@ -55,14 +58,14 @@ const App = () => {
                 </tr>
               </thead>
               <tbody>
-                {todos.map((todos) => (
-                  <tr key={todos.id}>
-                    <td>{todos.task}</td>
+                {todos.map((todo) => (
+                  <tr key={todo.id}>
+                    <td>{todo.task}</td>
                     <td>
                       <i className="fa-solid fa-pen-to-square"></i>
                       <i
                         className="fa-solid fa-delete-left"
-                        onClick={deleteContact}
+                        onClick={() => deleteContact(todo.id)}
                       ></i>
                     </td>
                   </tr>
@@ -117,14 +120,15 @@ const Exp = styled.div`
     font-weight: 600;
     cursor: pointer;
     margin-top: 1rem;
-    margin-left: 90%;
+    margin-left: 88%;
    }
    
   .main {
     padding: 1rem;
+    margin-left: 8rem;
 
     input {
-      width: 70%;
+      width: 67.2%;
       outline: none;
       border: none;
       padding: 1rem;
@@ -135,7 +139,7 @@ const Exp = styled.div`
     table {
       text-align: center;
       padding: 1rem;
-      width: 100%;
+      width: 70%;
       background: rgb(189, 183, 170);
 
         & th,td {
@@ -143,6 +147,7 @@ const Exp = styled.div`
            background: rgb(102, 99, 92);
            color: white;
            padding: 0.4rem;
+           width: 80%;
 
             i {
                 cursor: pointer;
@@ -161,26 +166,8 @@ const Exp = styled.div`
       font-weight: 600;
       cursor: pointer;
       margin-top: 1rem;
-      margin-left: 40%;
+      margin-left: 25%;
       padding: 1rem;
       font-size: 1rem;
         }
-`;
-
-const Dark = styled.body`
-  .dark {
-    color: white;
-
-    .container {
-      background: black;
-
-      nav {
-        background: rgb(45, 44, 44);
-
-        .fa-moon {
-          color: yellow;
-        }
-      }
-    }
-  }
 `;
